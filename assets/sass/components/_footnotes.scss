@@ -77,10 +77,7 @@
 
 @media (min-width: 1280px) {
   .note-ref:hover ~ .side {
-    display: inline-block;
-    position: absolute;
-    margin-left: 1rem;
-    padding: 0.5rem;
-    box-sizing: content-box;
+    margin-right: calc(-270px - 1.5em); // See .side-right (above)
+    background: var(--light-background-hover);
   }
 }
