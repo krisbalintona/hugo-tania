@@ -99,6 +99,14 @@ img {
   display: inline-block;
   max-width: 100%;
   height: auto;
+
+  transition: transform 0.25s ease;
+  transition-delay: 0.25s;
+}
+
+// Enlarge images. Relies on transition property too for img
+img:hover {
+  transform: scale(1.25);
 }
 
 p,
