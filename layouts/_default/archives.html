@@ -11,16 +11,28 @@
 
 <section>
     <div class="container">
+        <!-- For categories -->
         <div class="filter-container">
-          {{ $maxCategoryToShow := $.Site.Params.maxCategoryToShow | default 5 }}
-          {{ range .Site.Taxonomies.categories.TaxonomyArray | first $maxCategoryToShow }}
+            {{ $maxCategoryToShow := $.Site.Params.maxCategoryToShow | default 5 }}
+
+            {{ range .Site.Taxonomies.categories.TaxonomyArray | first $maxCategoryToShow }}
             <div class="filter-item" data-value="{{ .Page.Title }}" data-type="categories">
-              {{ .Page.Title }}<sup>{{ .Count }}</sup>
+                {{ .Page.Title }}<sup>{{ .Count }}</sup>
             </div>
-          {{ end }}
+            {{ end }}
         </div>
+
+        <!-- For tags -->
+        <div class="filter-container">
+            {{ $maxCategoryToShow := $.Site.Params.maxCategoryToShow | default 5 }}
+            {{ range .Site.Taxonomies.tags.TaxonomyArray | first $maxCategoryToShow }}
+            <div class="filter-item" data-value="{{ .Page.Title }}" data-type="tags">
+                {{ .Page.Title }}<sup>{{ .Count }}</sup>
+            </div>
+            {{ end }}
+        </div>
+
         <input id="search-query" type="search" placeholder="Search for anything...">
-        
         <div id="search-results">
         </div>
         <section id="articles-list">
