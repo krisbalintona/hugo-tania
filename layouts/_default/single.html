@@ -1,15 +1,17 @@
 {{ define "main" }}
+
 <div class="container">
+    <!-- Header -->
     <article>
         <header class="article-header">
             <div class="thumb">
                 <div>
                     <h1>{{ .Title }}</h1>
+                    <!-- Metadata -->
                     <div class="post-meta">
                         <div>
+                            <!-- Support for multiple authors -->
                             {{ $author := .Params.author | default .Site.Params.author }}
-
-                            <!-- Suport for multiple authors -->
                             By {{ with $author }}
                             {{ if (reflect.IsSlice .) }}
                             {{ delimit . ", " }}
@@ -17,10 +19,21 @@
                             {{ . }}
                             {{ end }}
                             {{ end }} |
+
+                            <!-- Date published -->
                             <time>{{ .Date.Format "January 02, 2006" }}</time> |
+
+                            <!-- Reading time estimate -->
                             {{ .ReadingTime }} minutes
                         </div>
+
                         <div class="tags">
+                            <!-- Categories -->
+                            {{ range (.GetTerms "categories") }}
+                            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                            {{ end }} |
+
+                            <!-- Tags -->
                             {{ range (.GetTerms "tags") }}
                             <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
                             {{ end }}
@@ -31,11 +44,13 @@
         </header>
     </article>
 
+    <!-- Article -->
     <div class="article-post">
         {{ .Content }}
     </div>
 </div>
 
+<!-- Next and previous posts -->
 <div class="container">
     {{ if .Section }}
     <nav class="flex container suggested">
@@ -55,6 +70,8 @@
     </nav>
     {{ end }}
 </div>
+
+<!-- Comments -->
 {{ if or (not (isset .Params "comments")) (eq .Params.comments "true")}}
 <div class="container">
     {{ partial "comments/include" . }}
