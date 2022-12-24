@@ -1,0 +1,13 @@
+<!-- Set mermaid theme -->
+<!-- Also see layouts/shortcodes/mermaid.html -->
+
+{{ if .Page.Store.Get "hasMermaid" }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<!-- FIXME 2022-06-13: Mermaid color scheme doesn't change on the fly when site theme is toggled. Grep "window.addEventListener"" for examples. -->
+<script>
+ mermaid.initialize({
+     theme: localStorage.getItem("ThemeColorScheme") === "dark" ? "dark" : "default",
+     startOnLoad: true,
+ });
+</script>
+{{ end }}
