@@ -1,5 +1,12 @@
 {{ define "main" }}
 
+<!-- Variables -->
+{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+{{ $projects := where .Site.RegularPages "Section" "projects" }}
+{{ $pages = .Paginate ($pages)  }}
+{{ $archivesPage := first 1 (where .Site.Pages "Layout" "eq" "archives") }}
+
+<!-- Bio and socials -->
 <div class="container">
     <section class="my">
         <div class="content">
@@ -10,13 +17,13 @@
                 {{ range $name, $path := $.Param "socialOptions" }}
                 {{ if (and $path (ne $name "email")) }}
                 <a href="{{ $path | safeURL }}" target="_blank" rel="noreferrer" title="{{ $name }}"
-                    aria-label="{{ $name }}">
+                   aria-label="{{ $name }}">
                     {{ partial (print "svgs/social/" $name ".svg") (dict "width" 25 "height" 25) }}
                 </a>
                 {{ end }}
                 {{ if (and $path (eq $name "email")) }}
                 <a href="mailto:{{ $path | safeURL }}" target="_blank" rel="noreferrer" title="{{ $path }}"
-                    aria-label="{{ $name }}">
+                   aria-label="{{ $name }}">
                     {{ partial (print "svgs/social/" $name ".svg") (dict "width" 25 "height" 25) }}
                 </a>
                 {{ end }}
@@ -26,12 +33,8 @@
     </section>
 </div>
 
-{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-{{ $projects := where .Site.RegularPages "Section" "projects" }}
-{{ $pages = .Paginate ($pages)  }}
-{{ $archivesPage := first 1 (where .Site.RegularPages "Layout" "eq" "archives") }}
-
 <div class="container">
+    <!-- Latest articles -->
     <section>
         <h2>
             Latest Articles
@@ -53,6 +56,8 @@
             {{ end }}
         </div>
     </section>
+
+    <!-- Projects -->
     {{ if gt (len $projects) 0}}
     <section>
         <h2>Projects</h2>
@@ -74,6 +79,61 @@
         </div>
     </section>
     {{ end }}
+
+    <!-- Series -->
+    <!-- Modified from list.html -->
+    <section style="scale: 0.98;"> <!-- OPTIMIZE 2022-12-23: Hacky way of making it smaller -->
+        <!-- <h2>Series</h2> -->
+        <h3 style="text-indent: 0.75rem;">Series</h3>
+        <div class="container">
+            <section>
+                <section>
+                    <div class="posts">
+                        {{ range (index .Site.Taxonomies.series) }}
+                        <div class="post">
+                            <a href="{{ .Page.RelPermalink }}">
+                                <div class="post-row">
+                                    <time>{{ .Page.Date.Format "Jan 02" }}</time>
+                                    <h3>{{ .Page.Title }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                        {{ end }}
+                    </div>
+                </section>
+            </section>
+        </div>
+    </section>
+
+    <!-- Tags and categories -->
+    <!-- Modified from terms.html -->
+    <div class="row">
+        <div class="column">
+            <section>
+                <h4>Tags</h4>
+                <div class="container">
+                    <div class="terms">
+                        {{ range (index .Site.Taxonomies.tags) }}
+                        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="bg-number">{{ .Count }}</span></a>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="column">
+            <section>
+                <h4 >Categories</h4>
+                <div class="container">
+                    <div class="terms">
+                        {{ range (index .Site.Taxonomies.categories) }}
+                        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="bg-number">{{ .Count }}</span></a>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 
 {{ end }}

@@ -9,11 +9,40 @@
     font-weight: 400;
     color: var(--font-color);
     border-radius: 0.35rem;
-    line-spacing: 2rem;
 
     &:hover {
       background: var(--light-background);
       color: var(--dark-font-color);
     }
+  }
+}
+
+// For the two-column layout between tags and categories on the home page
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.column {
+  flex: 1;
+  margin: 0 0.5rem;
+  text-indent: 0.75rem;
+
+  .container {
+    padding-left: 0rem;
+  }
+
+  a {
+    padding: 0.5rem 1rem;
+    margin: 0.15rem 0.15rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+  }
+}
+
+// When screen is 600px wide, have each row's columns stack vertically
+@media screen and (max-width: 600px) {
+  .row {
+    display: block;
   }
 }
