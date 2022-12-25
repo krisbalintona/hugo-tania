@@ -53,7 +53,7 @@
         <hr>
         <h3>{{ .LinkTitle }} series</h3>
         <ol>
-            {{ range (where .Site.RegularPages ".Params.series" "eq" .Title) }}
+            {{ range (where .Page.RegularPages ".Params.series" "eq" .Title) }}
             {{ if eq .Permalink $currPermalink}}
             <li>
                 <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
