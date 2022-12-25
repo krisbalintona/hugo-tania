@@ -1,12 +1,12 @@
 @import "base/normalize";
 @import "base/reset";
-@import "base/variables";
+@import "base/root";
+@import "base/light";
+@import "base/dark";
 @import "base/grid";
 @import "base/scaffolding";
 @import "base/headings";
 @import "base/links";
-@import "base/dark";
-
 
 @import "components/navbar";
 @import "components/bio";
