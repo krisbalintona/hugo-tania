@@ -1,0 +1,6 @@
+{{ $icon := (print "svgs/" . ".svg") }}
+{{ if $icon }}
+  <span class="icon">
+      {{ partial $icon | safeHTML }}
+  </span>
+{{ end }}

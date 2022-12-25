@@ -1,0 +1,25 @@
+.shortcode {
+  display: flex;
+  align-items: center;
+  margin: 12px 5px;
+  border: 1px;
+  border-radius: 7px;
+  border-style: solid;
+  border-color: var(--light-background-hover);
+  box-shadow: 4px 4px 2px var(--light-background-hover);
+}
+
+.shortcode-text {
+  padding: 1rem 1.5rem 1rem 0;
+  text-align: justify;
+}
+
+.icon svg {
+  display: flex;
+  height: 1.5rem;
+  margin: auto 1.2rem;
+}
+
+.shortcode-alert svg path {
+  fill: var(--link-color);
+}

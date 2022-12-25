@@ -5,6 +5,7 @@
 @import "base/scaffolding";
 @import "base/headings";
 @import "base/links";
+@import "base/dark";
 
 
 @import "components/navbar";
@@ -25,5 +26,4 @@
 @import "components/projects";
 @import "components/terms";
 @import "components/pagination";
-
-@import "base/dark";
+@import "components/shortcodes";

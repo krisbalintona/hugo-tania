@@ -1,0 +1,8 @@
+<div class="shortcode">
+    <span class="shortcode-alert">
+        {{ partial "icon.html" (.Get 0 | default "triangle-exclamation") }}
+    </span>
+    <span class="shortcode-text">
+        {{- .Inner | markdownify -}}
+    </span>
+</div>
