@@ -25,18 +25,23 @@
 
                             <!-- Reading time estimate -->
                             {{ .ReadingTime }} minutes
-                        </div>
 
-                        <div class="tags">
-                            <!-- Categories -->
-                            {{ range (.GetTerms "categories") }}
-                            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-                            {{ end }} |
+                            <div class="tags">
+                                <!-- Series -->
+                                {{ range (.GetTerms "series") }}
+                                <em style="font-size: 1rem;">Part of the</em> <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> <em style="font-size: 1rem;">series</em>
+                                {{ end }}
 
-                            <!-- Tags -->
-                            {{ range (.GetTerms "tags") }}
-                            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-                            {{ end }}
+                                <em style="font-size: 1rem;">| Found in</em>
+                                <!-- Categories -->
+                                {{ range (.GetTerms "categories") }}
+                                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                                {{ end }}
+                                <!-- Tags -->
+                                {{ range (.GetTerms "tags") }}
+                                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                                {{ end }}
+                            </div>
                         </div>
                     </div>
                 </div>
