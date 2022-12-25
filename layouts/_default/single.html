@@ -27,12 +27,6 @@
                             {{ .ReadingTime }} minutes
 
                             <div class="tags">
-                                <!-- Series -->
-                                {{ range (.GetTerms "series") }}
-                                <em style="font-size: 1rem;">Part of the</em> <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> <em style="font-size: 1rem;">series</em>
-                                {{ end }}
-
-                                <em style="font-size: 1rem;">| Found in</em>
                                 <!-- Categories -->
                                 {{ range (.GetTerms "categories") }}
                                 <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
@@ -49,9 +43,39 @@
         </header>
     </article>
 
-    <!-- Article -->
+    <!-- Content -->
     <div class="article-post">
         {{ .Content }}
+
+        <!-- Other posts in series -->
+        {{ $currPermalink := .Page.Permalink }}
+        {{ range (.GetTerms "series") }}
+        <hr>
+        <h3>{{ .LinkTitle }} series</h3>
+        <ol>
+            {{ range (where .Site.RegularPages ".Params.series" "eq" .Title) }}
+            {{ if eq .Permalink $currPermalink}}
+            <li>
+                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                <em><small>this post!</small></em>
+            </li>
+            {{ else }}
+            <li>
+                {{ .LinkTitle }}
+                <em><small>coming soon!</small></em>
+            </li>
+            {{ end }}
+            {{ end }}
+        </ol>
+        <!-- Alternative to revealing the titles of my post drafts -->
+        <!-- <div style="font-size: 1.1rem;">
+             <center>
+             <em>And</em>
+             <b>{{ len (where (where .Site.RegularPages ".Params.series" "eq" .Title) ".Params.draft" "eq" true) }}</b>
+             <em>on the way!</em>
+             </center>
+             </div> -->
+        {{ end }}
     </div>
 </div>
 
