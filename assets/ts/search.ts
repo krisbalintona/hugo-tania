@@ -175,6 +175,7 @@ class Search {
       this.searchFilter.set(value, type);
       el.classList.add("active");
     }
+    // console.log("tk filterSelect value: " + value);
     this.executeSearch(this.buildSearchValue(""));
   }
 }
