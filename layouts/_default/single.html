@@ -46,8 +46,11 @@
         </header>
     </article>
 
-    <!-- Content -->
     <div class="article-post">
+        <!-- Content -->
+        {{ if and (gt .WordCount 400 ) (.Params.tableofcontents) }}
+        {{ .TableOfContents }}
+        {{ end }}
         {{ .Content }}
 
         <!-- Other posts in series -->
