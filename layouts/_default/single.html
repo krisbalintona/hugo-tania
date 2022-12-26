@@ -57,10 +57,7 @@
         </details>
         {{ end }}
 
-        <!-- HACK 2022-12-25: Styling here necessary for some reason because of a bug when the window is a certain width and the table of contents is open -->
-        <div style="overflow: auto">
-            {{ .Content }}
-        </div>
+        {{ .Content }}
 
         <!-- Other posts in series -->
         {{ $currPermalink := .Page.Permalink }}
