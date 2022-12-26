@@ -36,13 +36,15 @@
   }
 
   .highlight > .chroma {
-    margin: 0 0 2rem;
-
-    border-radius: 8px;
-    overflow-x: auto;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
     position: relative;
+    margin: 0 0 2rem;
+    border-width: 0px 1px 1px 1px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: var(--light-background);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.125);
     background: $code-background;
+    overflow-x: auto;
 
     code {
       padding: 40px 10px 10px;
@@ -495,13 +497,15 @@
   }
 
   .highlight > .chroma {
-    margin: 0 0 2rem;
-
-    border-radius: 7px;
-    overflow-x: auto;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
     position: relative;
+    margin: 0 0 2rem;
+    border-width: 0px 1px 1px 1px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: var(--light-background);
+    box-shadow: 2px 2px 10px var(--light-background-hover);
     background: $code-background;
+    overflow-x: auto;
 
     code {
       padding: 40px 10px 10px;
