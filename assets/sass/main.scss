@@ -27,3 +27,23 @@
 @import "components/terms";
 @import "components/pagination";
 @import "components/shortcodes";
+
+#TableOfContents-container {
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: var(--light-background);
+  box-shadow: 0.2rem 0.1rem 2px var(--border);
+}
+
+#TableOfContents-header {
+  font-family: sans;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  background-color: var(--light-background);
+}
+
+#TableOfContents {
+  padding: 1.8rem 0 1.8px 3.7rem;
+}

@@ -48,10 +48,19 @@
 
     <div class="article-post">
         <!-- Content -->
-        {{ if and (gt .WordCount 400 ) (.Params.tableofcontents) }}
-        {{ .TableOfContents }}
+        {{ if .Params.tableofcontents }}
+        <details id="TableOfContents-container" open>
+            <summary id="TableOfContents-header">
+                Table of Contents
+            </summary>
+            {{ .TableOfContents }}
+        </details>
         {{ end }}
-        {{ .Content }}
+
+        <!-- HACK 2022-12-25: Styling here necessary for some reason because of a bug when the window is a certain width and the table of contents is open -->
+        <div style="overflow: auto">
+            {{ .Content }}
+        </div>
 
         <!-- Other posts in series -->
         {{ $currPermalink := .Page.Permalink }}
