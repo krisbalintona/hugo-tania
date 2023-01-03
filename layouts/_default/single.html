@@ -20,8 +20,13 @@
                             {{ end }}
                             {{ end }} |
 
-                            <!-- Date published -->
-                            <time>{{ .Date.Format "January 02, 2006" }}</time> |
+                            <!-- Date published and updated -->
+                            {{ $date := .Date.UTC.Format "Jan 2, 2006" }}
+                            {{ $lastmod := .Lastmod.UTC.Format "Jan 2, 2006" }}
+                            Published <time>{{ $date }}</time>
+                            {{ if and (ne $lastmod $date) (gt .Lastmod .Date) }}
+                            <time>, last updated {{ $lastmod }}</time>
+                            {{ end }} |
 
                             <!-- Word count estimate -->
                             {{ .WordCount }} words,
