@@ -47,7 +47,7 @@
         <div id="search-results">
         </div>
         <section id="articles-list">
-            {{ range $pages.GroupByDate "2006" }}
+            {{ range $pages.GroupByPublishDate "2006" }}
             <section>
                 <h2>{{ .Key }}</h2>
                 <div class="posts">
@@ -55,7 +55,7 @@
                     <div class="post">
                         <a href="{{ .RelPermalink }}">
                             <div class="post-row">
-                                <time>{{ .Date.Format "Jan 02" }}</time>
+                                <time>{{ .PublishDate.Format "Jan 02" }}</time>
                                 <h3>{{ .Title }}</h3>
                             </div>
                         </a>

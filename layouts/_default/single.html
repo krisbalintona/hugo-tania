@@ -21,10 +21,10 @@
                             {{ end }} |
 
                             <!-- Date published and updated -->
-                            {{ $date := .Page.PublishDate.Format "Jan 2, 2006" }}
-                            {{ $lastmod := .Page.Lastmod.Format "Jan 2, 2006" }}
+                            {{ $date := .PublishDate.Format "Jan 2, 2006" }}
+                            {{ $lastmod := .Lastmod.Format "Jan 2, 2006" }}
                             Published <time>{{ $date }}</time>
-                            {{ if and (ne $lastmod $date) (gt .Lastmod .Date) }}
+                            {{ if and (ne $lastmod $date) (gt .Lastmod .PublishDate) }}
                             <time>, last updated {{ $lastmod }}</time>
                             {{ end }} |
 
