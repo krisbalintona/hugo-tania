@@ -12,7 +12,7 @@
     margin-left: -0.5rem;
     margin-right: -0.5rem;
 
-    >a {
+    > a {
         display: block;
         font-weight: 500;
         background: var(--light-background);
@@ -45,16 +45,24 @@ kbd {
     background-color: #f7f7f7;
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 2px #fff;
+    box-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px #fff;
     color: #333;
     display: inline-block;
-    font-family: Helvetica Neue, Inter, -apple-system, BlinkMacSystemFont,
-        Helvetica, Arial, sans-serif;
+    font-family:
+        Helvetica Neue,
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        Helvetica,
+        Arial,
+        sans-serif;
     line-height: 1.4;
     margin: 0 0.1em;
-    padding: 0.1em 0.6em;
+    padding: 0.1em 0.2em;
     text-shadow: 0 1px 0 #fff;
-    font-size: 14px;
+    font-size: 0.8em;
 }
 
 #comments {
@@ -66,7 +74,6 @@ kbd {
 }
 
 @media print {
-
     .comments,
     #comments {
         display: none;
