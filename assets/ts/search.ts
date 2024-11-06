@@ -144,7 +144,9 @@ class Search {
         };
       } else if (v == "series") {
         object = {
-          series: k,
+          // Exact match for multi-word series.  Needed for correctly matching
+          // multi-word phrases, e.g., series names
+          series: `="${k}"`,
         };
       }
       filter.push(object);
@@ -153,9 +155,9 @@ class Search {
       let orObject = {
         $or: [
           { title: value },
-          // fuse extended search, 'value is include-match
-          // more details: https://fusejs.io/examples.html#extended-search
-          { contents: "'" + value },
+          // For fuse's extended search: 'value is include-match more details:
+          // https://fusejs.io/examples.html#extended-search
+          { contents: "'" + value }, // Partial match in contents using extended search
         ],
       };
       filter.push(orObject);
