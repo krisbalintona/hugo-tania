@@ -23,12 +23,12 @@ const hide = function (el: HTMLElement) {
 
 class Search {
   private searchInput = document.getElementById(
-    "search-query"
+    "search-query",
   ) as HTMLInputElement;
   private searchResults = document.getElementById("search-results");
   private articlesList = document.getElementById("articles-list");
   private filterItems = document.getElementsByClassName(
-    "filter-item"
+    "filter-item",
   ) as HTMLCollectionOf<HTMLElement>;
   private searchFilter = new Map();
   private fuse: any;
