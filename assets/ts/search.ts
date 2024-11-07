@@ -134,18 +134,18 @@ class Search {
     }
     this.searchFilter.forEach((v: string, k: string) => {
       let object = {};
+      // We use exact match for multi-word categories, tags, and series.  Needed
+      // for correctly matching multi-word phrases, e.g., series names
       if (v == "tags") {
         object = {
-          tags: k,
+          tags: `="${k}"`,
         };
       } else if (v == "categories") {
         object = {
-          categories: k,
+          categories: `="${k}"`,
         };
       } else if (v == "series") {
         object = {
-          // Exact match for multi-word series.  Needed for correctly matching
-          // multi-word phrases, e.g., series names
           series: `="${k}"`,
         };
       }
