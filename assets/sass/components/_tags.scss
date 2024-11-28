@@ -42,13 +42,13 @@ mark {
 }
 
 kbd {
-    background-color: #f7f7f7;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    background-color: var(--light-background, #f7f7f7);
+    border: 2px solid var(--border, rgba(0, 0, 0, 0.3));
     border-radius: 3px;
     box-shadow:
-        0 1px 0 rgba(0, 0, 0, 0.2),
-        inset 0 0 0 2px #fff;
-    color: #333;
+        0 1px 0 var(--light-transparent-bg, rgba(0, 0, 0, 0.2)),
+        inset 0 0 0 2px var(--background, #fff);
+    color: var(--font-color, #333);
     display: inline-block;
     font-family:
         Helvetica Neue,
@@ -61,7 +61,7 @@ kbd {
     line-height: 1.4;
     margin: 0 0.1em;
     padding: 0.1em 0.2em;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 var(--background, #fff);
     font-size: 0.8em;
 }
 
