@@ -4,6 +4,15 @@
 
 #cusdis_thread {
     padding-top: 2rem;
+    height: auto; /* Automatically adjust to fit content */
+    overflow: visible; /* Ensure the container doesn't clip its content */
+}
+
+#cusdis_thread iframe {
+    height: auto; /* Ensure the iframe grows dynamically */
+    min-height: 500px; /* Optional: Set a minimum height for better usability */
+    width: 100%; /* Ensure the iframe spans the container width */
+    overflow: visible;
 }
 
 .giscus {
