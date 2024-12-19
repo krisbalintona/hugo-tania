@@ -10,15 +10,17 @@
                     <!-- Metadata -->
                     <div class="post-meta">
                         <div>
-                            <!-- Support for multiple authors -->
-                            {{ $author := .Params.author | default .Site.Params.author }}
-                            By {{ with $author }}
-                            {{ if (reflect.IsSlice .) }}
-                            {{ delimit . ", " }}
-                            {{ else }}
-                            {{ . }}
-                            {{ end }}
-                            {{ end }} |
+                            <!-- Support for multiple authors. I disable this
+                            because I am the only author of the posts in by blog
+                            -->
+                            <!-- {{ $author := .Params.author | default .Site.Params.author }} -->
+                            <!-- By {{ with $author }} -->
+                            <!-- {{ if (reflect.IsSlice .) }} -->
+                            <!-- {{ delimit . ", " }} -->
+                            <!-- {{ else }} -->
+                            <!-- {{ . }} -->
+                            <!-- {{ end }} -->
+                            <!-- {{ end }} | -->
 
                             <!-- Date published and updated -->
                             {{ $date := .PublishDate.Format "Jan 2, 2006" }}
