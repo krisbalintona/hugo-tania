@@ -8,6 +8,7 @@
         <main>
             {{ block "main" . }}{{ end }}
         </main>
+        {{ partial "goatcounter_analytics.html" . -}}
         {{ partial "footer/footer" . }}
     </body>
 </html>
