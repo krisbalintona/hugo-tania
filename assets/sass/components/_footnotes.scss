@@ -9,6 +9,11 @@
   p {
     margin: 0;
   }
+
+  @media (max-width: 1280px) {
+    width: 100%;
+    padding: 0 2em;
+  }
 }
 
 .side-right {
@@ -20,6 +25,13 @@
 
   p {
     font-size: 0.9rem;
+  }
+
+  @media (max-width: 1280px) {
+    float: none;
+    clear: both;
+    margin: 1em auto;
+    background: none;
   }
 }
 
@@ -49,6 +61,13 @@
   &:hover {
     box-shadow: none;
     border: none;
+
+    @media (min-width: 1280px) {
+      ~ .side {
+        margin-right: calc(-270px - 1.5em); // See .side-right (above)
+        background: var(--light-background-hover);
+      }
+    }
   }
 }
 
@@ -59,25 +78,4 @@
   text-decoration: none;
   padding: 1px 5px;
   border-radius: 5px;
-}
-
-@media (max-width: 1280px) {
-  .side {
-    width: 100%;
-    padding: 0 2em;
-  }
-
-  .side-right {
-    float: none;
-    clear: both;
-    margin: 1em auto;
-    background: none;
-  }
-}
-
-@media (min-width: 1280px) {
-  .note-ref:hover ~ .side {
-    margin-right: calc(-270px - 1.5em); // See .side-right (above)
-    background: var(--light-background-hover);
-  }
 }
