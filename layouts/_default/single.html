@@ -67,7 +67,9 @@
 
 <!-- Next and previous posts -->
 <div class="container">
-    {{ if .Section }}
+    {{ $siteNextAndPrev := .Site.Params.nextAndPrev | default false }}
+    {{ $pageNextAndPrev := .Params.nextAndPrev | default $siteNextAndPrev }}
+    {{ if and .Section (eq $pageNextAndPrev true) }}    
     <nav class="flex container suggested">
         {{ with .PrevInSection }}
         <a rel="prev" href="{{ .RelPermalink }}" title="Previous post (older)">
