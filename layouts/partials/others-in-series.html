@@ -12,7 +12,7 @@
             variables to hide post drafts in all but where I want them to be
             discoverable. Once I know how to prevent certain posts from being
             listed anywhere in my main menus, then I can return to this -->
-            {{ range (where .Page.RegularPages ".Params.series" "eq" .Title) }}
+            {{ range (where .Page.RegularPages ".Params.series" "eq" .Title).Reverse }}
             {{ if eq .Params.draft false }}
             <li>
                 <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
