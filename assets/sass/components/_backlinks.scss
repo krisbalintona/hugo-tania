@@ -1,0 +1,38 @@
+.BackLinksDiv {
+  margin: 2rem 6rem;
+  margin-top: 3rem;
+  border-width: 3px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: var(--light-background);
+  box-shadow:
+    0 0.125rem 0.25rem rgba(0, 0, 0, 0.1),
+    0 0.25rem 0.5rem rgba(0, 0, 0, 0.1),
+    0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background-color: var(--light-background);
+  padding: 0.8rem 1.5rem;
+  font-size: 0.85rem;
+
+  // Narrower screens (tablets and smaller)
+  @media (max-width: 768px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1 {
+    margin: 5px auto;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 3px;
+    padding-bottom: 0.5rem;
+  }
+}
+
+#BackLinksList {
+  margin-left: 1rem;
+  margin-bottom: 1.2rem;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+}

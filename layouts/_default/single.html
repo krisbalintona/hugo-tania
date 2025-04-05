@@ -58,7 +58,7 @@
         <div class="article-post">
             {{ .Content }}
 
-            {{ partial "backlinks" (dict "page" .) }}
+            {{ partial "backlinks" . }}
 
             {{ partial "others-in-series" . }}
         </div>

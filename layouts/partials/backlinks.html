@@ -1,23 +1,50 @@
-<!-- Heavily taken from https://scripter.co/parsing-backlinks-in-hugo/ -->
-{{ $backlinks := slice }}
-{{ $path_base := .page.File.ContentBaseName }}
-{{ $path_base_re := printf `["/(]%s["/)]` $path_base }}
+<!-- This is heavily taken from
+https://poview.org/posts/best-backlink-support-in-hugo-that-i-am-aware-of/ -->
 
-{{ range where site.RegularPages "RelPermalink" "ne" .page.RelPermalink }}
-    {{ if (findRE $path_base_re .RawContent 1) }}
-        {{ $backlinks = $backlinks | append . }}
+<!-- Variable re gets the name of the current post -->
+{{ $re := "" }}
+{{ with .File }}
+<!-- If we are in a Leaf Bundle the "index" file means nothing for backlinking,
+therefore we need the ContentBaseName (see
+https://gohugo.io/variables/files/#examples) -->
+    {{ if (eq .TranslationBaseName "index") }}
+        {{ $re = .ContentBaseName }}
+<!-- I want to skip the Branch Bundle pages, as they are not made for content and
+will not have backlinks -->
+    {{ else if (eq .TranslationBaseName "_index") }}
+        {{ $re = "BranchBundle" }}
+<!-- Finally, if it is a regular content page, just take its translational name,
+without lang extension -->
+    {{ else }}
+        {{- $re = .TranslationBaseName -}}
     {{ end }}
 {{ end }}
 
-{{ with $backlinks }}
-<section class="backlinks">
-    {{ printf "%s" ($.heading | default "<h2>Cross-references from other posts</h2>") | safeHTML }}
+{{- $backlinks := slice -}}
+<!-- I don't want the backlinks to be searched neither for Branch Bundles, nor
+for other pages which are not posts -->
+{{ if and (ne $re "BranchBundle") (eq .Page.Section "posts") }}
+{{- range (where .Site.RegularPages "Section" "posts") -}}
+    {{ if (eq .File.TranslationBaseName "index") }}
+        {{- if and (findRE $re .RawContent) (not (eq $re .File.ContentBaseName)) -}} {{ $backlinks = $backlinks | append . }} {{- end -}}
+    {{ else }}
+        {{- if and (findRE $re .RawContent) (not (eq $re .File.TranslationBaseName)) -}} {{ $backlinks = $backlinks | append . }} {{- end -}}
+    {{ end }}
+{{- end -}}
+{{- end -}}
+
+{{- if gt (len $backlinks) 0 -}}
+<div class="BackLinksDiv">
+    <h1>Cross-references from other posts</h1>
+    <p>The posts below reference the current post:</p>
     <nav>
-        <ul>
-            {{ range . }}
+        <ul id="BackLinksList">
+            <!-- Reverse $backlinks to insert the links according to
+            chronological publishing date -->
+            {{ range $backlinks.Reverse }}
             <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
             {{ end }}
         </ul>
     </nav>
-</section>
-{{ end }}
+</div>
+{{- end -}}
