@@ -5,27 +5,29 @@
 <p>
     This post is just one installation of the <i>{{ .LinkTitle }}</i> series. Below are all the posts in this series:
 </p>
-<ol>
-<!-- FIXME 2022-12-25: I haven't found a way to utilize _build variables to hide
-post drafts in all but where I want them to be discoverable. Once I know how to
-prevent certain posts from being listed anywhere in my main menus, then I can
-return to this -->
-    {{ range (where .Page.RegularPages ".Params.series" "eq" .Title) }}
-    {{ if eq .Params.draft false }}
-    <li>
-        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        {{ if eq .Permalink $currPermalink}}
-        <em><small>this post!</small></em>
+<nav>
+    <ol>
+    <!-- FIXME 2022-12-25: I haven't found a way to utilize _build variables to
+    hide post drafts in all but where I want them to be discoverable. Once I
+    know how to prevent certain posts from being listed anywhere in my main
+    menus, then I can return to this -->
+        {{ range (where .Page.RegularPages ".Params.series" "eq" .Title) }}
+        {{ if eq .Params.draft false }}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{ if eq .Permalink $currPermalink}}
+            <em><small>this post!</small></em>
+            {{ end }}
+        </li>
+        {{ else }}
+        <li>
+            {{ .LinkTitle }}
+            <em><small>coming soon!</small></em>
+        </li>
         {{ end }}
-    </li>
-    {{ else }}
-    <li>
-        {{ .LinkTitle }}
-        <em><small>coming soon!</small></em>
-    </li>
-    {{ end }}
-    {{ end }}
-</ol>
+        {{ end }}
+    </ol>
+</nav>
 
 <!-- Alternative to revealing the titles of my post drafts -->
 <!-- <div style="font-size: 1.1rem;">
